@@ -5,18 +5,40 @@ import './ProductView.css'
 import { useState } from 'react';
 
 function ProductView({ products }) {
-    console.log(products)
+    // console.log(products)
 
     // TODO: Replace with state variable
     const [sideOpen, setSideOpen] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState();
 
     useEffect( () => {
-        setSideOpen(true);
+        // console.log(`selectedProduct CHANGED TO`, selectedProduct);
+        if (selectedProduct)
+            setSideOpen(true);
     }, [selectedProduct] )
 
     useEffect( () => {
+        // console.log(`sideOpen CHANGED TO`, sideOpen);
+        if (!sideOpen)
         setSelectedProduct();
+    }, [sideOpen])
+
+    useEffect( () => {
+        // if(performance.navigation.type === 1) {
+        //     const sideState = localStorage.getItem('sideOpen');
+        //     if(sideState)
+        //         setSideOpen(!sideState.includes("false"))
+        // }
+        // if (!sideState) {
+        //    localStorage.setItem('sideOpen', `${sideOpen}`)
+        // } else
+        localStorage.setItem('sideOpen', `${sideOpen}`)
+        // setSideOpen(!sideState.includes("false"))
+            // localStorage.setItem('sideOpen', `${sideOpen}`)
+
+
+    //    console.log("SIDE STATE: ", sideState)
+    //
     }, [sideOpen])
 
     return (
